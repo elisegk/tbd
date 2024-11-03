@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { FlyControls } from 'three/addons/controls/FlyControls.js'
 
 function resizeRendererToDisplaySize(renderer: THREE.Renderer) {
   const canvas = renderer.domElement;
@@ -18,12 +19,16 @@ const renderer = new THREE.WebGLRenderer({
   canvas: canvas as HTMLCanvasElement,
 });
 
-const fov = 75;
-const aspect = 2;
-const near = 0.1;
-const far = 5;
-const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-camera.position.z = 4;
+
+const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500);
+camera.position.set( 0, 0, 10 );
+
+const controls = new FlyControls( camera, renderer.domElement );
+controls.movementSpeed = 100;
+controls.rollSpeed = Math.PI / 24;
+controls.autoForward = false;
+controls.dragToLook = true;
+
 
 const scene = new THREE.Scene();
 
@@ -80,6 +85,8 @@ function render(time: number) {
   });
 
   renderer.render(scene, camera);
+  
+  controls.update(0.01)
 
   requestAnimationFrame(render);
 }
