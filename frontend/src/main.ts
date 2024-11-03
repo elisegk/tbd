@@ -25,7 +25,7 @@ camera.position.set( 0, 0, 10 );
 
 const controls = new FlyControls( camera, renderer.domElement );
 controls.movementSpeed = 100;
-controls.rollSpeed = Math.PI / 24;
+controls.rollSpeed = Math.PI / 6;
 controls.autoForward = false;
 controls.dragToLook = true;
 
