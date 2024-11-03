@@ -27,6 +27,8 @@ camera.position.z = 4;
 
 const scene = new THREE.Scene();
 
+scene.background = new THREE.Color("lightblue");
+
 const boxWidth = 1;
 const boxHeight = 1;
 const boxDepth = 1;
@@ -48,9 +50,9 @@ function makeInstance(
 }
 
 const cubes = [
-  makeInstance(geometry, "lightblue", 0),
-  makeInstance(geometry, 0x8844aa, -2),
-  makeInstance(geometry, 0xaa8844, 2),
+  makeInstance(geometry, "blue", 0),
+  makeInstance(geometry, "blue", -2),
+  makeInstance(geometry, "blue", 2),
 ];
 
 const color = 0xffffff;
@@ -71,7 +73,7 @@ function render(time: number) {
   }
 
   cubes.forEach((cube, ndx) => {
-    const speed = 1 + ndx * 0.1;
+    const speed = 3;
     const rot = time * speed;
     cube.rotation.x = rot;
     cube.rotation.y = rot;
