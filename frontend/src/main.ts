@@ -91,3 +91,21 @@ function render(time: number) {
   requestAnimationFrame(render);
 }
 requestAnimationFrame(render);
+
+var floorTexture = new THREE.TextureLoader().load( '../public/tulip.jpg' );
+floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
+floorTexture.repeat.set( 10, 10 );
+var floorMaterial = new THREE.MeshBasicMaterial({
+  map: floorTexture,
+  //color: new THREE.Color("purple"),
+  side: THREE.DoubleSide
+});
+var floorGeometry = new THREE.PlaneGeometry(1000, 1000, 10, 10);
+var mesh = new THREE.Mesh(floorGeometry, floorMaterial);
+mesh.rotation.x = - Math.PI / 2;
+mesh.position.y = -3;
+mesh.receiveShadow = true;
+scene.add( mesh );
+
+
+
